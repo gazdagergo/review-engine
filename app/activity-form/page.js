@@ -1,5 +1,4 @@
 import ActivityForm from "@/components/ActivityForm";
-
 const ActivityPage = () => {
   return (
     <main className="grid grid-cols-1">
