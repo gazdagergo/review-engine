@@ -1,9 +1,29 @@
 import ActivityForm from "@/components/ActivityForm";
-const ActivityPage = () => {
+import graphQlApi from "@/lib/graphQlApi";
+const ActivityPage = async (params) => {
+
+  let members = {}
+      try {
+      ;({ members } = await graphQlApi(`
+        query($memberSlug: String!){
+            members(filter: { slug: { _eq: $memberSlug }}) {
+                member_name
+            }
+        }
+      `, {
+        variables: {
+          "memberSlug": params.searchParams.member
+        }
+      }))
+    } catch (error){
+
+  }
+
+
   return (
     <main className="grid grid-cols-1">
       <div className="container mx-auto max-w-3xl py-4">
-        <ActivityForm />
+        <ActivityForm memberName={members?.[0]?.member_name} />
       </div>
     </main>
   )

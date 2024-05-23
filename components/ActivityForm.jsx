@@ -3,7 +3,7 @@ import {useState} from "react";
 import graphQlApi from "@/lib/graphQlApi";
 import SuccessMessage from "@/components/SuccessMessage";
 
-const ActivityForm = () => {
+const ActivityForm = ({ memberName }) => {
   const [value, setValue] = useState('')
   const [status, setStatus] = useState(null)
 
@@ -31,6 +31,18 @@ const ActivityForm = () => {
       <h2 className="my-8  text-4xl leading-tight text-primary text-purple font-normal">
         Register your activity
       </h2>
+
+      <div className="relative mb-4 flex flex-wrap items-stretch">
+        <input
+          type="text"
+          className="relative m-0 block flex-auto rounded-e border border-solid border-neutral-200 bg-gray-100 bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-400 outline-none transition duration-200 ease-in-out placeholder:text-neutral-300 focus:z-[3] focus:border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-white/10 dark:text-white dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill dark:focus:border-primary"
+          placeholder="Member name"
+          aria-label="Member name"
+          aria-describedby="basic-addon1"
+          value={memberName}
+          disabled
+        />
+      </div>
 
       <div className="relative mb-4 flex flex-wrap items-stretch">
         <input
