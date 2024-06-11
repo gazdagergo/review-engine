@@ -8,6 +8,7 @@ const ActivityPage = async (params) => {
         query($memberSlug: String!){
             members(filter: { slug: { _eq: $memberSlug }}) {
                 member_name
+                id
             }
         }
       `, {
@@ -23,7 +24,7 @@ const ActivityPage = async (params) => {
   return (
     <main className="grid grid-cols-1">
       <div className="container mx-auto max-w-3xl py-4">
-        <ActivityForm memberName={members?.[0]?.member_name} />
+        <ActivityForm memberName={members?.[0]?.member_name} memberId={members?.[0]?.id} />
       </div>
     </main>
   )
