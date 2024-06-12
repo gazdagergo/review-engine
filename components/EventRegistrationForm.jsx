@@ -3,7 +3,7 @@ import {useState} from "react";
 import graphQlApi from "@/lib/graphQlApi";
 import SuccessMessage from "@/components/SuccessMessage";
 
-const ActivityForm = () => {
+const ActivityForm = ({ eventId, eventName }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
@@ -11,19 +11,20 @@ const ActivityForm = () => {
 
   const handleSubmit = async () => {
     await graphQlApi(`
-      mutation($name: String!, $email: String!){
+      mutation($name: String!, $email: String!, $eventId: String!){
         create_Event_Registration_item(data: {
             participant_email: $email,
             participant_full_name: $name,
-            event: "annual-25"
+            event: $eventId
         }){
             id
         }
       }
     `, {
       variables: {
-        name: name,
-        email: email
+        name,
+        email,
+        eventId
       }
     })
 
@@ -38,6 +39,7 @@ const ActivityForm = () => {
       <h2 className="my-8  text-4xl leading-tight text-primary text-purple font-normal">
         Register for the event
       </h2>
+      <h4 className="mb-8 text-gray text-2xl">{eventName}</h4>
 
       <div className="relative mb-4 flex w-full flex-wrap items-stretch">
         <input
