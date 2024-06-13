@@ -13,8 +13,8 @@ const DetailedRegistrationPage = async ({ params }) => {
     }
   `, {
     variables: {
-      "registrationId": "fe454779-a537-4a3f-a7e0-bb482e8a3a27",
-      "eventId": "annual-25"
+      registrationId: params.registrationId,
+      eventId: params.eventId
     }
   })
 
@@ -24,8 +24,8 @@ const DetailedRegistrationPage = async ({ params }) => {
       <div className="container mx-auto max-w-3xl py-4">
         <DetailedEventRegistrationForm
           eventId={params.eventId}
-          eventName={data.events_by_id.event_name}
-          participantFullName={data.event_registration_by_id.participant_full_name}
+          eventName={data?.events_by_id?.event_name}
+          participantFullName={data?.event_registration_by_id?.participant_full_name}
         />
       </div>
     </main>
