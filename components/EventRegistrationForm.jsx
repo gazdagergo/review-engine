@@ -12,10 +12,10 @@ const ActivityForm = ({ eventId, eventName }) => {
   const handleSubmit = async () => {
     await graphQlApi(`
       mutation($name: String!, $email: String!, $eventId: String!){
-        create_Event_Registration_item(data: {
-            participant_email: $email,
-            participant_full_name: $name,
-            event: $eventId
+        create_event_registration_item(data: {
+          participant_email: $email,
+          participant_full_name: $name,
+          event: $eventId
         }){
             id
         }

@@ -11,8 +11,6 @@ const ActivityPage = async () => {
     }
   `)
 
-  console.log(event)
-
   return (
     <main className="grid grid-cols-1">
       <div className="container mx-auto max-w-3xl py-4">
