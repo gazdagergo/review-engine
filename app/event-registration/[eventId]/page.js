@@ -1,15 +1,19 @@
 import EventRegistrationForm from "@/components/EventRegistrationForm";
 import graphQlApi from "@/lib/graphQlApi";
-const ActivityPage = async () => {
+const ActivityPage = async ({ params }) => {
 
   const { events: [ event ] } = await graphQlApi(`
-    query Events{
-      events(filter: { id: { _eq: "annual-25"}}){
-          id
-          event_name
+    query Events($eventId: String!){
+      events(filter: { id: { _eq: $eventId }}){
+        id
+        event_name
       }
     }
-  `)
+  `,{
+      variables: {
+        eventId: params.eventId
+      }
+    })
 
   return (
     <main className="grid grid-cols-1">
